@@ -10,6 +10,7 @@ export interface AuthLoginProps {
 export interface AuthLoginSuccessResponse {
   success: true;
   authToken: string;
+  isAdmin: boolean;
 }
 
 export interface AuthLoginErrorResponse {

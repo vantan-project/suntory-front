@@ -8,6 +8,13 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        baseColor: "#FDFFFF",
+        textColor: "#707070",
+        accentBaseColor: "#5BC2DC",
+        accentLightColor: "#A6E8F8",
+        accentDarkColor: "#247488",
+      },
     },
   },
   plugins: [],

@@ -3,9 +3,12 @@ import { AuthLogin } from "@/api/AuthLogin";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 export default function Login() {
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -40,13 +43,21 @@ export default function Login() {
             placeholder="Email"
             className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-accentBaseColor"
           />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-accentBaseColor"
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              placeholder="Password"
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-accentBaseColor pr-10"
+            />
+            <div
+              className="absolute right-3 inset-y-0 flex items-center justify-center cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+            </div>
+          </div>
 
           <button
             type="submit"

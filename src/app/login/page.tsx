@@ -58,7 +58,7 @@ export default function Login() {
 
         <p className="mt-4 text-gray-600">
           アカウントがない方は
-          <a href="/signup" className="text-blue-500 hover:underline">
+          <a href="/sign-up" className="text-blue-500 hover:underline">
             こちら
           </a>
         </p>

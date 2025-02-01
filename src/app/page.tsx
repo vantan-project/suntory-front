@@ -19,6 +19,7 @@ export default function Home() {
               src/app/page.tsx
             </code>
             .
+            Git Practice
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>

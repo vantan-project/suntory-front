@@ -9,11 +9,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        baseColor: "#FDFFFF",
-        textColor: "#707070",
-        accentBaseColor: "#5BC2DC",
-        accentLightColor: "#A6E8F8",
-        accentDarkColor: "#247488",
+        baseColor: "var(--base-color)",
+        textColor: "var(--text-color)",
+        accentBaseColor: "var(--accent-base-color)",
+        accentLightColor: "var(--accent-light-color)",
+        accentDarkColor: "var(--accent-dark-color)",
       },
     },
   },

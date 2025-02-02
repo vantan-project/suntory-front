@@ -3,8 +3,8 @@ import { AuthLogin } from "@/api/AuthLogin";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { Eye, EyeSlash } from "@phosphor-icons/react";
 
 export default function Login() {
   const router = useRouter();
@@ -57,21 +57,18 @@ export default function Login() {
               className="absolute right-3 inset-y-0 flex items-center justify-center cursor-pointer"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+              {showPassword ? <EyeSlash /> : <Eye />}
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-accentBaseColor text-baseColor py-3 rounded-md shadow-md"
-          >
+          <button type="submit" className="w-full bg-accentBaseColor text-baseColor py-3 rounded-md shadow-md">
             ログイン
           </button>
         </form>
 
-        <p className="mt-4 text-gray-600">
+        <p className="mt-4">
           アカウントがない方は
-          <a href="/sign-up" className="text-blue-500 hover:underline">
+          <a href="/sign-up" className="text-accentBaseColor hover:underline">
             こちら
           </a>
         </p>

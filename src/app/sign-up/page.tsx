@@ -1,6 +1,6 @@
 "use client";
 import { AuthSignUp } from "@/api/AuthSignUp";
-import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
+import { Eye, EyeSlash } from "@phosphor-icons/react";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -66,7 +66,7 @@ export default function SignUp() {
               className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer p-2"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+              {showPassword ? <EyeSlash /> : <Eye />}
             </div>
           </div>
           <div className="relative">
@@ -81,21 +81,18 @@ export default function SignUp() {
               className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer p-2"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             >
-              {showConfirmPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+              {showConfirmPassword ? <EyeSlash /> : <Eye />}
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-accentBaseColor text-baseColor py-3 rounded-md shadow-md"
-          >
+          <button type="submit" className="w-full bg-accentBaseColor text-baseColor py-3 rounded-md shadow-md">
             作成
           </button>
         </form>
 
-        <p className="mt-4 text-gray-600">
+        <p className="mt-4">
           ログインは
-          <a href="/login" className="text-blue-500 hover:underline">
+          <a href="/login" className="text-accentBaseColor hover:underline">
             こちら
           </a>
         </p>

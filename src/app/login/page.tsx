@@ -3,8 +3,8 @@ import { AuthLogin } from "@/api/AuthLogin";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { Eye, EyeSlash } from "@phosphor-icons/react";
 
 export default function Login() {
   const router = useRouter();
@@ -57,7 +57,7 @@ export default function Login() {
               className="absolute right-3 inset-y-0 flex items-center justify-center cursor-pointer"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+              {showPassword ? <EyeSlash /> : <Eye />}
             </div>
           </div>
 

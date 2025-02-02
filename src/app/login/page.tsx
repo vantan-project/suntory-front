@@ -27,6 +27,8 @@ export default function Login() {
       } else {
         router.push("/user");
       }
+    } else {
+      alert(response.messages[0]);
     }
   }
   return (

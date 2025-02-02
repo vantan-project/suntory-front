@@ -61,17 +61,14 @@ export default function Login() {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-accentBaseColor text-baseColor py-3 rounded-md shadow-md"
-          >
+          <button type="submit" className="w-full bg-accentBaseColor text-baseColor py-3 rounded-md shadow-md">
             ログイン
           </button>
         </form>
 
-        <p className="mt-4 text-gray-600">
+        <p className="mt-4">
           アカウントがない方は
-          <a href="/sign-up" className="text-blue-500 hover:underline">
+          <a href="/sign-up" className="text-accentBaseColor hover:underline">
             こちら
           </a>
         </p>

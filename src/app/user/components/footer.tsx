@@ -1,22 +1,26 @@
 "use client";
-import { Gear, House, Stack, StackPlus } from "@phosphor-icons/react";
+import { GearSix, House, Stack, StackPlus } from "@phosphor-icons/react";
 import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const pathname = usePathname();
   return (
-    <footer className="fixed bottom-0 w-full bg-white p-4">
+    <footer className="fixed bottom-0 w-full bg-baseColor py-2 border-[0.5px] border-t-textColor">
       <nav>
         <ul className="flex justify-around">
           {[
             { href: "/user", label: "トップ", icon: House },
             { href: "/user/my-set", label: "マイセット", icon: Stack },
             { href: "/user/my-set/store", label: "セットの追加", icon: StackPlus },
-            { href: "/user/setting", label: "設定", icon: Gear },
+            { href: "/user/setting", label: "設定", icon: GearSix },
           ].map((item) => (
-            <li key={item.href} className="flex-1">
+            <li key={item.href} className="flex-1 relative">
+              {pathname === item.href && (
+                <div className="absolute top-[-8px] left-1/2 transform -translate-x-1/2 w-2/3 mx-auto rounded-t-[2px] rounded-b-[4px] h-1 bg-accentBaseColor"></div>
+              )}
+
               <a href={item.href} className={`flex flex-col items-center text-xs ${pathname === item.href ? "text-accentBaseColor" : ""}`}>
-                <item.icon size={32} />
+                <item.icon size={40} weight="light" />
                 {item.label}
               </a>
             </li>

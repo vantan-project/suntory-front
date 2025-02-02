@@ -16,6 +16,14 @@ export default {
         accentDarkColor: "var(--accent-dark-color)",
       },
     },
+    fontFamily: {
+      body: [
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        "Meiryo",
+        "sans-serif",
+      ],
+    },
   },
   plugins: [],
 } satisfies Config;

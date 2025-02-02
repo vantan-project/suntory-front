@@ -21,17 +21,17 @@ export interface AuthLoginErrorResponse {
 export async function AuthLogin({
   user,
 }: AuthLoginProps): Promise<AuthLoginSuccessResponse | AuthLoginErrorResponse> {
-  const api_url = `${process.env.NEXT_PUBLIC_API_URL}/auth/login`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/login`;
 
   return await axios
-    .post<AuthLoginSuccessResponse | AuthLoginErrorResponse>(api_url, {
+    .post<AuthLoginSuccessResponse | AuthLoginErrorResponse>(apiUrl, {
       user: user,
     })
     .then((response) => {
       return response.data;
     })
     .catch((error: AxiosError<AuthLoginErrorResponse>) => {
-      console.log(error);
+      console.warn(error);
       return {
         success: false,
         messages: error.response?.data.messages || ["エラーが発生しました"],

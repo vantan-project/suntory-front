@@ -2,20 +2,22 @@
 import { DrinkStore } from "@/api/DrinkStore";
 import { MasterCategory, MasterCategoryResponse } from "@/api/MasterCategory";
 import Link from "next/link";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDropzone } from "react-dropzone";
 
 export default function DrinkStorePage() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [categories, setCategories] = useState<MasterCategoryResponse["categories"]>([]);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: { "image/*": [] },
+    maxFiles: 1,
+    onDropAccepted: (acceptedFiles) => {
+      if (acceptedFiles[0]) {
+        setImageUrl(URL.createObjectURL(acceptedFiles[0]));
+      }
+    },
+  });
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    const file = target.files?.[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setImageUrl(url);
-    }
-  };
   useEffect(() => {
     (async () => {
       setCategories((await MasterCategory()).categories);
@@ -57,11 +59,27 @@ export default function DrinkStorePage() {
       <form onSubmit={handleSubmit}>
         <div className="flex gap-16 p-16">
           <div className="flex-[2]">
-            <label htmlFor="imageUpload">
-              <p className="text-subtitle mb-4">商品写真</p>
-              <div className="bg-gray-400 w-full flex items-center justify-center cursor-pointer aspect-square">{imageUrl && <img src={imageUrl} alt="preview" className="w-full h-full object-contain" />}</div>
-            </label>
-            <input type="file" id="imageUpload" name="imageUpload" accept="image/*" onChange={handleImageChange} className="hidden" />
+            <div {...getRootProps()}>
+              <label htmlFor="imageUpload">
+                <p className="text-subtitle mb-4">商品写真</p>
+              </label>
+              <input {...getInputProps()} />
+              <div className={`w-full flex items-center justify-center cursor-pointer aspect-square border-2 border-dashed rounded-lg p-4 text-center ${isDragActive ? "border-accentBaseColor" : ""}`}>
+                {imageUrl ? (
+                  <div className="flex flex-col items-center justify-center">
+                    <img src={imageUrl} alt="Preview" className="max-w-full max-h-96" />
+                  </div>
+                ) : isDragActive ? (
+                  "そのままはなす"
+                ) : (
+                  <>
+                    クリックして画像を選択するか
+                    <br />
+                    ここに画像をドラッグ＆ドロップしてください
+                  </>
+                )}
+              </div>
+            </div>
           </div>
           <div className="flex-[3] flex flex-col justify-between">
             <div className="flex flex-col gap-4">

@@ -1,5 +1,6 @@
 "use client";
 import { GearSix, House, Stack, StackPlus } from "@phosphor-icons/react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Footer() {
@@ -15,14 +16,12 @@ export default function Footer() {
             { href: "/user/setting", label: "設定", icon: GearSix },
           ].map((item) => (
             <li key={item.href} className="flex-1 relative">
-              {pathname === item.href && (
-                <div className="absolute top-[-8px] left-1/2 transform -translate-x-1/2 w-2/3 mx-auto rounded-t-[2px] rounded-b-[4px] h-1 bg-accentBaseColor"></div>
-              )}
+              {pathname === item.href && <div className="absolute top-[-8px] left-1/2 transform -translate-x-1/2 w-2/3 mx-auto rounded-t-[2px] rounded-b-[4px] h-1 bg-accentBaseColor"></div>}
 
-              <a href={item.href} className={`flex flex-col items-center text-xs ${pathname === item.href ? "text-accentBaseColor" : ""}`}>
+              <Link href={item.href} className={`flex flex-col items-center text-support ${pathname === item.href ? "text-accentBaseColor" : ""}`}>
                 <item.icon size={40} weight="light" />
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

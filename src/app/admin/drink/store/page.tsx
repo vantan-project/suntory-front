@@ -7,6 +7,7 @@ import { useDropzone } from "react-dropzone";
 
 export default function DrinkStorePage() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [imageData, setImageData] = useState<File | null>(null);
   const [categories, setCategories] = useState<MasterCategoryResponse["categories"]>([]);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: { "image/*": [] },
@@ -14,6 +15,7 @@ export default function DrinkStorePage() {
     onDropAccepted: (acceptedFiles) => {
       if (acceptedFiles[0]) {
         setImageUrl(URL.createObjectURL(acceptedFiles[0]));
+        setImageData(acceptedFiles[0]);
       }
     },
   });
@@ -28,15 +30,11 @@ export default function DrinkStorePage() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const name = formData.get("name") as string;
-    const imageData = formData.get("imageUpload") as File;
     const categoryId = parseInt(formData.get("category") as string, 10);
-
     if (!name || !imageData || isNaN(categoryId)) {
       alert("全てのフィールドを正しく入力してください");
       return;
     }
-
-    console.log(name, imageData, categoryId);
 
     const response = await DrinkStore({
       drink: {

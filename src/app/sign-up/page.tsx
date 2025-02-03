@@ -1,6 +1,7 @@
 "use client";
 import { AuthSignUp } from "@/api/AuthSignUp";
-import { Eye, EyeSlash } from "@phosphor-icons/react";
+import EyeClose from "@/components/icons/eye-close";
+import EyeOpen from "@/components/icons/eye-open";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
@@ -67,7 +68,7 @@ export default function SignUp() {
               className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer p-2"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? <EyeSlash /> : <Eye />}
+              {showPassword ? <EyeClose /> : <EyeOpen />}
             </div>
           </div>
           <div className="relative">
@@ -82,7 +83,7 @@ export default function SignUp() {
               className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer p-2"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             >
-              {showConfirmPassword ? <EyeSlash /> : <Eye />}
+              {showConfirmPassword ? <EyeClose /> : <EyeOpen />}
             </div>
           </div>
 

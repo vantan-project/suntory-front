@@ -1,6 +1,17 @@
+import Title from "@/components/title";
 import Link from "next/link";
 import React from "react";
 
 export default function Admin() {
-  return <Link href="/admin/drink/store">Drink Store</Link>;
+  return (
+    <>
+      <Title title="トップ" />
+      <Link href="/admin/drink" className="text-accentBaseColor">
+        商品一覧
+      </Link>
+      <Link href="/admin/drink/store" className="text-accentBaseColor">
+        商品追加
+      </Link>
+    </>
+  );
 }

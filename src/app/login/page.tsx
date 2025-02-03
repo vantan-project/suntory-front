@@ -3,8 +3,9 @@ import { AuthLogin } from "@/api/AuthLogin";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { Eye, EyeSlash } from "@phosphor-icons/react";
+import Link from "next/link";
 
 export default function Login() {
   const router = useRouter();
@@ -38,42 +39,24 @@ export default function Login() {
         <h2 className="text-textColor mb-6">アカウントにログイン</h2>
 
         <form className="flex flex-col gap-12" onSubmit={handleSubmit}>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-accentBaseColor"
-          />
+          <input type="email" id="email" name="email" placeholder="Email" className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-accentBaseColor" />
           <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              name="password"
-              placeholder="Password"
-              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-accentBaseColor pr-10"
-            />
-            <div
-              className="absolute right-3 inset-y-0 flex items-center justify-center cursor-pointer"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+            <input type={showPassword ? "text" : "password"} id="password" name="password" placeholder="Password" className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-accentBaseColor pr-10" />
+            <div className="absolute right-3 inset-y-0 flex items-center justify-center cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? <EyeSlash /> : <Eye />}
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-accentBaseColor text-baseColor py-3 rounded-md shadow-md"
-          >
+          <button type="submit" className="w-full bg-accentBaseColor text-baseColor py-3 rounded-md shadow-md">
             ログイン
           </button>
         </form>
 
-        <p className="mt-4 text-gray-600">
+        <p className="mt-4">
           アカウントがない方は
-          <a href="/sign-up" className="text-blue-500 hover:underline">
+          <Link href="/sign-up" className="text-accentBaseColor hover:underline">
             こちら
-          </a>
+          </Link>
         </p>
       </div>
     </div>

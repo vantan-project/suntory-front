@@ -29,7 +29,7 @@ export async function DrinkStore({
       {
         drink: {
           ...drink,
-          imageData: formData.get("merch[imgData]"),
+          imageData: formData.get("drink[imageData]"),
         },
       },
       {

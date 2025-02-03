@@ -1,6 +1,7 @@
 "use client";
 import { DrinkStore } from "@/api/DrinkStore";
 import { MasterCategory, MasterCategoryResponse } from "@/api/MasterCategory";
+import Title from "@/components/title";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -56,9 +57,7 @@ export default function DrinkStorePage() {
 
   return (
     <div>
-      <h2 className="text-title bg-accentLightColor pl-16 py-6 relative before:absolute before:top-0 before:left-4 before:w-7 before:rounded-xl before:h-full before:bg-accentBaseColor">
-        商品登録フォーム
-      </h2>
+      <Title title="商品登録フォーム" />
       <form onSubmit={handleSubmit}>
         <div className="flex gap-16 p-16">
           <div className="flex-[2]">

@@ -1,6 +1,7 @@
 "use client";
 import { DrinkStore } from "@/api/DrinkStore";
 import { MasterCategory, MasterCategoryResponse } from "@/api/MasterCategory";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
@@ -8,7 +9,9 @@ import { useDropzone } from "react-dropzone";
 export default function DrinkStorePage() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [imageData, setImageData] = useState<File | null>(null);
-  const [categories, setCategories] = useState<MasterCategoryResponse["categories"]>([]);
+  const [categories, setCategories] = useState<
+    MasterCategoryResponse["categories"]
+  >([]);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: { "image/*": [] },
     maxFiles: 1,
@@ -53,7 +56,9 @@ export default function DrinkStorePage() {
 
   return (
     <div>
-      <h2 className="text-title bg-accentLightColor pl-16 py-6 relative before:absolute before:top-0 before:left-4 before:w-7 before:rounded-xl before:h-full before:bg-accentBaseColor">商品登録フォーム</h2>
+      <h2 className="text-title bg-accentLightColor pl-16 py-6 relative before:absolute before:top-0 before:left-4 before:w-7 before:rounded-xl before:h-full before:bg-accentBaseColor">
+        商品登録フォーム
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="flex gap-16 p-16">
           <div className="flex-[2]">
@@ -62,11 +67,17 @@ export default function DrinkStorePage() {
                 <p className="text-subtitle mb-4">商品写真</p>
               </label>
               <input {...getInputProps()} />
-              <div className={`w-full flex items-center justify-center cursor-pointer aspect-square border-2 border-dashed rounded-lg p-4 text-center ${isDragActive ? "border-accentBaseColor" : ""}`}>
+              <div
+                className={`w-full h-auto flex items-center justify-center cursor-pointer border-2 border-dashed rounded-lg text-center ${isDragActive ? "border-accentBaseColor" : ""} ${!imageData ? "aspect-square" : ""}`}
+              >
                 {imageUrl ? (
-                  <div className="flex flex-col items-center justify-center">
-                    <img src={imageUrl} alt="Preview" className="max-w-full max-h-96" />
-                  </div>
+                  <Image
+                    src={imageUrl}
+                    alt="Preview"
+                    className="w-full h-auto rounded-md"
+                    width={100}
+                    height={100}
+                  />
                 ) : isDragActive ? (
                   "そのままはなす"
                 ) : (
@@ -79,35 +90,49 @@ export default function DrinkStorePage() {
               </div>
             </div>
           </div>
-          <div className="flex-[3] flex flex-col justify-between">
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center border-textColor border-b p-4 gap-4">
-                <label htmlFor="name" className="flex-[1] text-subtitle">
-                  商品名
-                </label>
-                <input type="text" id="name" name="name" className="flex-[2] p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-accentBaseColor" />
-              </div>
-              <div className="flex items-center border-textColor border-b p-4 gap-4">
-                <label htmlFor="category" className="flex-[1] text-subtitle">
-                  カテゴリー
-                </label>
-                <select id="category" name="category" className="flex-[2] p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-accentBaseColor" defaultValue={""}>
-                  {categories.map((category) => (
-                    <option key={category.id} value={category.id}>
-                      {category.name}
-                    </option>
-                  ))}
-                  <option value="" hidden>
-                    選択してください
+          <div className="flex-[3] flex flex-col justify-start gap-4">
+            <div className="flex items-center border-textColor border-b p-4 gap-4">
+              <label htmlFor="name" className="flex-[1] text-subtitle">
+                商品名
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className="flex-[2] p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-accentBaseColor"
+              />
+            </div>
+            <div className="flex items-center border-textColor border-b p-4 gap-4">
+              <label htmlFor="category" className="flex-[1] text-subtitle">
+                カテゴリー
+              </label>
+              <select
+                id="category"
+                name="category"
+                className="flex-[2] p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-accentBaseColor"
+                defaultValue={""}
+              >
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
                   </option>
-                </select>
-              </div>
+                ))}
+                <option value="" hidden>
+                  選択してください
+                </option>
+              </select>
             </div>
             <div className="flex justify-end gap-4">
-              <Link href="/admin" className="p-4 bg-gray-400 text-button text-baseColor rounded-3xl">
+              <Link
+                href="/admin"
+                className="p-4 bg-gray-400 text-button text-baseColor rounded-3xl"
+              >
                 キャンセル
               </Link>
-              <button type="submit" className="p-4 bg-accentBaseColor text-button text-baseColor rounded-3xl">
+              <button
+                type="submit"
+                className="p-4 bg-accentBaseColor text-button text-baseColor rounded-3xl"
+              >
                 登録する
               </button>
             </div>

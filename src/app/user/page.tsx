@@ -48,7 +48,7 @@ export default function Page() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g clip-path="url(#clip0_193_4144)">
+        <g clipPath="url(#clip0_193_4144)">
           <rect
             x="-7"
             y="10.5508"

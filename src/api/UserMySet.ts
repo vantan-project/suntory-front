@@ -11,7 +11,7 @@ export interface UserMySetResponse {
       drinkName: string;
       bottleCount: number;
     }>;
-  };
+  } | null;
 }
 
 export async function UserMySet(): Promise<UserMySetResponse> {

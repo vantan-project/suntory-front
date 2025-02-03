@@ -8,4 +8,9 @@
   --accent-base-color: #5bc2dc;
   --accent-light-color: #a6e8f8;
   --accent-dark-color: #247488;
+  --error-color: #d32f2f;
+}
+
+.custom-image {
+  @apply h-48 w-auto object-cover object-center rounded-xl absolute left-1/2 -translate-x-1/2;
 }

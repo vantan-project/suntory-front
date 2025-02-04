@@ -6,9 +6,11 @@ import { UserPlan, UserPlanResponse } from "@/api/UserPlan";
 import { MySetCord } from "@/components/user/MySetCord";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Page() {
+  const router = useRouter();
   const [drinkNew, setDrinkNew] = useState<DrinkNewResponse["imageUrls"]>([]);
   const [userMySet, setUserMySet] = useState<
     UserMySetResponse["mySet"] | undefined
@@ -86,13 +88,13 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="rounded-t-3xl bg-baseColor px-5 pt-8">
+      <div className="rounded-t-3xl bg-baseColor px-5 py-8">
         <div className="text-2xl font-bold text-textColor pb-10">
           現在のマイセット
         </div>
 
         {userMySet !== undefined && (
-          <MySetCord mySet={userMySet} onClick={() => {}} />
+          <MySetCord mySet={userMySet} onClick={() => router.push("/user/my-set")} />
         )}
 
         <div className="text-2xl font-bold text-textColor pt-14 pb-10">
@@ -112,14 +114,14 @@ export default function Page() {
 
             {userPlan && (
               <div>
-                <span className="text-2xl font-bold">{userPlan?.price}</span>
+                <span className="text-2xl font-bold">{userPlan.amount}</span>
                 <span className="text-xl">円/月</span>
               </div>
             )}
           </div>
         )}
         <div className="flex justify-end">
-          <Link className="border-b border-textColor opacity-50" href="#">
+          <Link className="border-b border-textColor opacity-50" href="/user/plan">
             変更はこちらから
           </Link>
         </div>

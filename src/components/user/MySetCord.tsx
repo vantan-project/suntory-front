@@ -4,9 +4,10 @@ import Image from "next/image";
 export interface MySetCordProps {
   mySet: UserMySetResponse["mySet"];
   onClick: () => void;
+  canClick?: boolean;
 }
 
-export function MySetCord({ mySet, onClick }: MySetCordProps) {
+export function MySetCord({ mySet, onClick, canClick = true }: MySetCordProps) {
   const bgColor =
     mySet === null
       ? "bg-gray-500"
@@ -15,7 +16,9 @@ export function MySetCord({ mySet, onClick }: MySetCordProps) {
       : "bg-accentBaseColor";
 
   return (
-    <div className={`${bgColor} rounded-xl p-4 h-64 relative`}>
+    <div
+      className={`${bgColor} rounded-xl p-4 h-64 relative w-[calc(100vw-40px)]`}
+    >
       {mySet?.isLacking && (
         <div className="absolute -top-8 left-0 text-xl text-errorColor">
           ※本数が足りません
@@ -33,7 +36,7 @@ export function MySetCord({ mySet, onClick }: MySetCordProps) {
           {mySet?.imageUrl && (
             <Image
               className="custom-image"
-              src={mySet?.imageUrl}
+              src={mySet.imageUrl}
               alt="my-set-image"
               width={100}
               height={100}
@@ -54,8 +57,11 @@ export function MySetCord({ mySet, onClick }: MySetCordProps) {
             ))}
           </div>
           <button
-            className="text-accentDarkColor bg-baseColor rounded-xl text-xl font-bold px-6 py-1 flex items-center gap-2"
+            className={`text-accentDarkColor bg-baseColor rounded-xl text-xl font-bold px-6 py-1 flex items-center gap-2 ${
+              !canClick && "opacity-0"
+            }`}
             onClick={onClick}
+            disabled={!canClick}
           >
             <div>切り替え</div>
             <svg

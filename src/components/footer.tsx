@@ -11,7 +11,7 @@ export default function Footer() {
   const pathname = usePathname();
   return (
     <>
-      <div className="h-[75px]"></div>
+      <div className="h-[86px]"></div>
       <footer className="fixed bottom-0 w-full bg-baseColor border-[0.5px] border-t-textColor h-[86px] flex items-center">
         <nav className="w-full">
           <ul className="flex justify-around items-center w-full">

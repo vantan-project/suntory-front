@@ -14,3 +14,15 @@
 .custom-image {
   @apply h-48 w-auto object-cover object-center rounded-xl absolute left-1/2 -translate-x-1/2;
 }
+
+select {
+  appearance: none; /* 標準のスタイルを解除 */
+  -webkit-appearance: none; /* Safari, Chrome対応 */
+  -moz-appearance: none; /* Firefox対応 */
+  -ms-appearance: none; /* Edge, IE対応 */
+  outline: none;
+}
+
+input {
+  outline: none;
+}

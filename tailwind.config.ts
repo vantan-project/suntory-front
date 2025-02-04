@@ -23,7 +23,7 @@ export default {
         },
       },
       animation: {
-        scroll: "scroll 30s linear infinite",
+        scroll: "scroll 20s linear infinite",
       },
       fontFamily: {
         body: [

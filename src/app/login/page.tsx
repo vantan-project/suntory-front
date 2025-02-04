@@ -4,8 +4,9 @@ import Cookies from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Eye, EyeSlash } from "@phosphor-icons/react";
 import Link from "next/link";
+import EyeClose from "@/components/icons/eye-close";
+import EyeOpen from "@/components/icons/eye-open";
 
 export default function Login() {
   const router = useRouter();
@@ -58,7 +59,7 @@ export default function Login() {
               className="absolute right-3 inset-y-0 flex items-center justify-center cursor-pointer"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? <EyeSlash /> : <Eye />}
+              {showPassword ? <EyeClose /> : <EyeOpen />}
             </div>
           </div>
 

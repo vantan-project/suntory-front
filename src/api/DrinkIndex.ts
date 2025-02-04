@@ -12,12 +12,11 @@ export interface DrinkIndexResponse {
   success: boolean;
   drinks: Array<{
     categoryId: number;
+    categoryName: string;
     items: Array<{
       id: number;
       name: string;
       imageUrl: string;
-      categoryId: number;
-      categoryName: string;
     }>;
   }>;
 }

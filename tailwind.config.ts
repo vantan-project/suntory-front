@@ -14,6 +14,16 @@ export default {
         accentBaseColor: "var(--accent-base-color)",
         accentLightColor: "var(--accent-light-color)",
         accentDarkColor: "var(--accent-dark-color)",
+        errorColor: "var(--error-color)",
+      },
+      keyframes: {
+        scroll: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        scroll: "scroll 20s linear infinite",
       },
       fontFamily: {
         body: [

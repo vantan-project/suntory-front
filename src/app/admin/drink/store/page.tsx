@@ -4,15 +4,18 @@ import { MasterCategory, MasterCategoryResponse } from "@/api/MasterCategory";
 import Title from "@/components/title";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 export default function DrinkStorePage() {
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [imageData, setImageData] = useState<File | null>(null);
   const [categories, setCategories] = useState<
     MasterCategoryResponse["categories"]
   >([]);
+  const searchParams = useSearchParams();
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: { "image/*": [] },
     maxFiles: 1,
@@ -26,6 +29,9 @@ export default function DrinkStorePage() {
 
   useEffect(() => {
     (async () => {
+      if (searchParams.get("category")) {
+        setSelectedCategory(searchParams.get("category") as string);
+      }
       setCategories((await MasterCategory()).categories);
     })();
   }, []);
@@ -109,16 +115,17 @@ export default function DrinkStorePage() {
                 id="category"
                 name="category"
                 className="flex-[2] p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-accentBaseColor"
-                defaultValue={""}
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
               >
+                <option value="" disabled>
+                  選択してください
+                </option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {category.name}
                   </option>
                 ))}
-                <option value="" hidden>
-                  選択してください
-                </option>
               </select>
             </div>
             <div className="flex justify-end gap-4">

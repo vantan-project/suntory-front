@@ -6,7 +6,9 @@ export default function Header() {
     <>
       <header className="fixed top-0 left-0 bg-baseColor flex justify-between items-center h-[70px] w-full z-20">
         <h1>
-          <Image src="/logo.png" alt="Logo" width={233} height={70} />
+          <Link href="/admin">
+            <Image src="/logo.png" alt="Logo" width={233} height={70} />
+          </Link>
         </h1>
         <nav className="pr-8">
           <ul className="flex gap-8">

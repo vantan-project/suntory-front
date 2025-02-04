@@ -15,7 +15,7 @@ export default function Page() {
   const [userMySet, setUserMySet] = useState<
     UserMySetResponse["mySet"] | undefined
   >();
-  const [userPlan, setUserPlan] = useState<UserPlanResponse["plan"]>();
+  const [userPlan, setUserPlan] = useState<UserPlanResponse["plan"]>(null);
 
   useEffect(() => {
     const topApi = async () => {
@@ -94,34 +94,39 @@ export default function Page() {
         </div>
 
         {userMySet !== undefined && (
-          <MySetCord mySet={userMySet} onClick={() => router.push("/user/my-set")} />
+          <MySetCord
+            mySet={userMySet}
+            onClick={() => router.push("/user/my-set")}
+          />
         )}
 
         <div className="text-2xl font-bold text-textColor pt-14 pb-10">
           現在のプラン
         </div>
 
-        {userPlan !== undefined && (
-          <div className="text-textColor flex justify-between border-b border-accentBaseColor">
-            {userPlan ? (
-              <div>
-                <span className="text-2xl font-bold">{userPlan?.quantity}</span>
-                <span className="text-xl">本プラン</span>
-              </div>
-            ) : (
-              <div className="text-xl">プランが未設定です</div>
-            )}
+        <div className="text-textColor flex justify-between border-b border-accentBaseColor">
+          {userPlan ? (
+            <div>
+              <span className="text-2xl font-bold">{userPlan.quantity}</span>
+              <span className="text-xl">本プラン</span>
+            </div>
+          ) : (
+            <div className="text-xl">プランが未設定です</div>
+          )}
 
-            {userPlan && (
-              <div>
-                <span className="text-2xl font-bold">{userPlan.amount}</span>
-                <span className="text-xl">円/月</span>
-              </div>
-            )}
-          </div>
-        )}
+          {userPlan && (
+            <div>
+              <span className="text-2xl font-bold">{userPlan.amount}</span>
+              <span className="text-xl">円/月</span>
+            </div>
+          )}
+        </div>
+
         <div className="flex justify-end">
-          <Link className="border-b border-textColor opacity-50" href="/user/plan">
+          <Link
+            className="border-b border-textColor opacity-50"
+            href="/user/plan"
+          >
             変更はこちらから
           </Link>
         </div>

@@ -66,19 +66,19 @@ export default function Admin() {
               {masterCategories.map((category) => (
                 <div
                   key={category.id}
-                  className="flex p-2 bg-accentLightColor rounded-full"
+                  className="bg-accentLightColor rounded-full relative"
                 >
                   <input
                     type="radio"
                     name="category"
                     id={category.id.toString()}
                     value={category.name}
-                    className="relative pr-5 appearance-none before:bg-baseColor before:w-4 before:h-4 before:rounded-full before:absolute before:left-0 before:top-1/2 before:transform before:translate-y-[-50%] checked:before:bg-accentBaseColor checked:before:border-2 checked:before:border-baseColor"
+                    className="hidden peer"
                     onChange={() => setCategoryId(category.id)}
                   />
                   <label
                     htmlFor={category.id.toString()}
-                    className="text-nowrap"
+                    className="text-nowrap p-2 flex items-center gap-1 before:w-4 before:h-4 before:bg-baseColor before:rounded-full before:block peer-checked:before:bg-accentBaseColor peer-checked:before:border-2 peer-checked:before:border-baseColor"
                   >
                     {category.name}
                   </label>

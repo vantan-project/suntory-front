@@ -6,12 +6,15 @@ import {
   DrinkSelectResponse,
 } from "@/api/DrinkSelect";
 import { MasterCategory, MasterCategoryResponse } from "@/api/MasterCategory";
-import { MySetStoreProps } from "@/api/MySetStore";
+import { MySetStore, MySetStoreProps } from "@/api/MySetStore";
 import { UserPlan } from "@/api/UserPlan";
+import { MySetStoreModal } from "@/components/user/MySetStoreModal";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Page() {
+  const router = useRouter();
   const [search, setSearch] = useState<DrinkSelectProps["search"]>({
     name: "",
     categoryId: null,
@@ -28,6 +31,7 @@ export default function Page() {
     now: 0,
     max: 0,
   });
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   useEffect(() => {
     const masterApi = async () => {
@@ -112,6 +116,14 @@ export default function Page() {
       }
       setCount({ ...count, now: count.now - 1 });
     }
+  };
+
+  const storeApi = async () => {
+    const response = await MySetStore({
+      mySet: myset,
+    });
+    alert(response.messages[0]);
+    if (response.success) router.push("/user/my-set");
   };
 
   return (
@@ -238,12 +250,27 @@ export default function Page() {
       <div>
         <div className="h-20" />
         <div className="w-full fixed bottom-20 flex justify-center items-center px-2">
-          <button className="w-full h-12 bg-accentDarkColor text-baseColor text-xl font-bold rounded-lg">
+          <button
+            className="w-full h-12 bg-accentDarkColor text-baseColor text-xl font-bold rounded-lg"
+            onClick={() => {
+              setIsOpenModal(true);
+            }}
+          >
             追加
           </button>
         </div>
       </div>
       {/* フッター */}
+
+      {isOpenModal && (
+        <MySetStoreModal
+          myset={myset}
+          setMySet={setMySet}
+          drinks={drinks}
+          onClose={() => setIsOpenModal(false)}
+          onClick={() => storeApi()}
+        />
+      )}
     </div>
   );
 }

@@ -48,7 +48,7 @@ export default function Admin() {
   };
 
   return (
-    <div>
+    <div className="space-y-8">
       <Title
         title="商品一覧"
         showSearch
@@ -56,9 +56,8 @@ export default function Admin() {
         onSearchChange={setSearchValue}
         onSearchSubmit={onSearchSubmit}
       />
-      {searchValue}
-      <div className="p-4 space-y-4">
-        <div className="space-y-2">
+      <div className="p-4 space-y-8">
+        <div className="space-y-4">
           <h3 className="text-subtitle block border-b-2 border-textColor">
             カテゴリ一覧
           </h3>
@@ -88,10 +87,10 @@ export default function Admin() {
             </fieldset>
           </div>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-8">
           {masterCategories.map((category) => (
-            <div key={category.id} className="space-y-2">
-              <h3 className="text-subtitle block bg-accentLightColor px-4 py-2">
+            <div key={category.id} className="space-y-4">
+              <h3 className="text-subtitle block bg-accentLightColor px-8 py-4">
                 {category.name}
               </h3>
               <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -101,7 +100,7 @@ export default function Admin() {
                     <Link
                       key={drink.id}
                       href={`/admin/drink/${drink.id}`}
-                      className="flex p-4 border-2 gap-2 items-center h-52"
+                      className="flex p-4 border-2 gap-2 items-center h-52 rounded-md"
                     >
                       <div className="h-full w-24 flex justify-center items-center">
                         <Image
@@ -119,7 +118,7 @@ export default function Admin() {
                   ))}
                 <Link
                   href={`/admin/drink/stpre?category=${category.id}`}
-                  className="flex p-4 border-2 gap-2 items-center h-52 justify-center"
+                  className="flex p-4 border-2 gap-2 items-center h-52 justify-center rounded-md"
                 >
                   <div className="bg-gray-400 w-32 h-32 rounded-full flex justify-center items-center">
                     <div className="relative w-20 h-2 bg-baseColor after:absolute after:w-full after:h-full after:rotate-90 after:bg-baseColor"></div>

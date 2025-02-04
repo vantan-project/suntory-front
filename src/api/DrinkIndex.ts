@@ -11,11 +11,13 @@ export interface DrinkIndexProps {
 export interface DrinkIndexResponse {
   success: boolean;
   drinks: Array<{
-    id: number;
-    name: string;
-    imageUrl: string;
     categoryId: number;
     categoryName: string;
+    items: Array<{
+      id: number;
+      name: string;
+      imageUrl: string;
+    }>;
   }>;
 }
 

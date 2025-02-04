@@ -10,39 +10,43 @@ export default function Admin() {
   const [masterCategories, setMasterCategories] = useState<
     MasterCategoryResponse["categories"]
   >([]);
-  const [categories, setCategories] = useState<
-    Record<number, DrinkIndexResponse["drinks"]>
-  >({});
+  const [drinks, setDrinks] = useState<DrinkIndexResponse["drinks"]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
-  const onSearchSubmit = () => {
-    console.log(searchValue);
-  };
+
   const [categoryId, setCategoryId] = useState<number>(0);
 
   useEffect(() => {
     (async () => {
       setMasterCategories((await MasterCategory()).categories);
-      setCategories(
-        (
-          await DrinkIndex({
-            search: {
-              name: searchValue,
-              categoryId: categoryId,
-            },
-          })
-        ).drinks.reduce(
-          (acc, drink) => {
-            if (!acc[drink.categoryId]) {
-              acc[drink.categoryId] = [];
-            }
-            acc[drink.categoryId].push(drink);
-            return acc;
-          },
-          {} as Record<number, DrinkIndexResponse["drinks"]>,
-        ),
-      );
+      await updateDrinks();
     })();
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      await updateDrinks();
+    })();
+  }, [categoryId]);
+
+  const onSearchSubmit = () => {
+    (async () => {
+      await updateDrinks();
+    })();
+  };
+
+  const updateDrinks = async () => {
+    setDrinks(
+      (
+        await DrinkIndex({
+          search: {
+            name: searchValue,
+            categoryId: categoryId,
+          },
+        })
+      ).drinks,
+    );
+  };
+
   return (
     <div>
       <Title
@@ -90,31 +94,37 @@ export default function Admin() {
               <h3 className="text-subtitle block bg-accentLightColor px-4 py-2">
                 {category.name}
               </h3>
-              <div className="grid grid-cols-4 gap-4">
-                {categories[category.id]?.map((drink) => (
-                  <Link
-                    key={drink.id}
-                    href={`/admin/drink/${drink.id}`}
-                    className="flex p-4 border-2 gap-2 items-center h-52"
-                  >
-                    <div className="h-full w-24 flex justify-center items-center">
-                      <Image
-                        src={drink.imageUrl}
-                        alt={drink.name}
-                        className="h-full w-auto object-cover"
-                        width={100}
-                        height={100}
-                      />
-                    </div>
-                    <p className="text-center text-button flex-1">
-                      {drink.name}
-                    </p>
-                  </Link>
-                ))}
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {drinks
+                  .find((entry) => entry.categoryId == category.id)
+                  ?.items.map((drink) => (
+                    <Link
+                      key={drink.id}
+                      href={`/admin/drink/${drink.id}`}
+                      className="flex p-4 border-2 gap-2 items-center h-52"
+                    >
+                      <div className="h-full w-24 flex justify-center items-center">
+                        <Image
+                          src={drink.imageUrl}
+                          alt={drink.name}
+                          className="h-full w-auto object-cover"
+                          width={100}
+                          height={100}
+                        />
+                      </div>
+                      <p className="text-center text-button flex-1">
+                        {drink.name}
+                      </p>
+                    </Link>
+                  ))}
                 <Link
                   href={`/admin/drink/stpre?category=${category.id}`}
-                  className="flex p-4 border-2 gap-2 items-center h-52 bg-gray-400"
-                ></Link>
+                  className="flex p-4 border-2 gap-2 items-center h-52 justify-center"
+                >
+                  <div className="bg-gray-400 w-32 h-32 rounded-full flex justify-center items-center">
+                    <div className="relative w-20 h-2 bg-baseColor after:absolute after:w-full after:h-full after:rotate-90 after:bg-baseColor"></div>
+                  </div>
+                </Link>
               </div>
             </div>
           ))}

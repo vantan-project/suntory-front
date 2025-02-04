@@ -18,12 +18,6 @@ export default function Header() {
             <li>
               <Link href="/admin/drink/store">ドリンク追加</Link>
             </li>
-            <li>
-              <Link href="#">あああ</Link>
-            </li>
-            <li>
-              <Link href="#">いいい</Link>
-            </li>
           </ul>
         </nav>
       </header>

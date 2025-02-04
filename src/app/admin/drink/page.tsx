@@ -43,7 +43,7 @@ export default function Admin() {
             categoryId: categoryId,
           },
         })
-      ).drinks,
+      ).drinks
     );
   };
 
@@ -88,14 +88,33 @@ export default function Admin() {
           </div>
         </div>
         <div className="space-y-8">
-          {masterCategories.map((category) => (
-            <div key={category.id} className="space-y-4">
+          {drinks.length === 0 && (
+            <>
               <h3 className="text-subtitle block bg-accentLightColor px-8 py-4">
-                {category.name}
+                {
+                  masterCategories.find(
+                    (category) => category.id === categoryId
+                  )?.name
+                }
+              </h3>
+              <Link
+                href={`/admin/drink/store?category=${categoryId}`}
+                className="flex p-4 border-2 gap-2 items-center h-52 justify-center rounded-md w-1/4"
+              >
+                <div className="bg-gray-400 w-32 h-32 rounded-full flex justify-center items-center">
+                  <div className="relative w-20 h-2 bg-baseColor after:absolute after:w-full after:h-full after:rotate-90 after:bg-baseColor"></div>
+                </div>
+              </Link>
+            </>
+          )}
+          {drinks.map((drink) => (
+            <div key={drink.categoryId} className="space-y-4">
+              <h3 className="text-subtitle block bg-accentLightColor px-8 py-4">
+                {drink.categoryName}
               </h3>
               <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {drinks
-                  .find((entry) => entry.categoryId == category.id)
+                  .find((entry) => entry.categoryId == drink.categoryId)
                   ?.items.map((drink) => (
                     <Link
                       key={drink.id}
@@ -117,7 +136,7 @@ export default function Admin() {
                     </Link>
                   ))}
                 <Link
-                  href={`/admin/drink/store?category=${category.id}`}
+                  href={`/admin/drink/store?category=${drink.categoryId}`}
                   className="flex p-4 border-2 gap-2 items-center h-52 justify-center rounded-md"
                 >
                   <div className="bg-gray-400 w-32 h-32 rounded-full flex justify-center items-center">

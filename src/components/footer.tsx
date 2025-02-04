@@ -1,11 +1,10 @@
 "use client";
-import { GearSix, Stack, StackPlus } from "@phosphor-icons/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import House from "./icons/House";
-import MySet from "./icons/MySet";
-import AddMySet from "./icons/AddMySet";
-import Gear from "./icons/Gear";
+import House from "./icons/house";
+import MySet from "./icons/my-set";
+import AddMySet from "./icons/add-my-set";
+import Gear from "./icons/gear";
 
 export default function Footer() {
   const pathname = usePathname();

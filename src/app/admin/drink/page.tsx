@@ -117,7 +117,7 @@ export default function Admin() {
                     </Link>
                   ))}
                 <Link
-                  href={`/admin/drink/stpre?category=${category.id}`}
+                  href={`/admin/drink/store?category=${category.id}`}
                   className="flex p-4 border-2 gap-2 items-center h-52 justify-center rounded-md"
                 >
                   <div className="bg-gray-400 w-32 h-32 rounded-full flex justify-center items-center">

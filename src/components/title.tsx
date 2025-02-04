@@ -14,8 +14,8 @@ export default function Title({
   onSearchSubmit,
 }: TitleProps) {
   return (
-    <div className="flex items-center justify-between bg-accentLightColor">
-      <h2 className="text-title pl-16 py-2 relative before:absolute before:top-0 before:left-4 before:w-7 before:rounded-xl before:h-full before:bg-accentBaseColor">
+    <div className="flex items-center justify-between bg-accentLightColor h-[60px]">
+      <h2 className="text-title pl-16 relative before:absolute before:top-1/2 before:translate-y-[-50%] before:left-4 before:w-7 before:h-[60px] before:rounded-xl before:bg-accentBaseColor">
         {title}
       </h2>
       {showSearch && (

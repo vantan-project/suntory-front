@@ -135,6 +135,7 @@ export default function Page() {
   const storeApi = async () => {
     const response = await MySetStore({
       mySet: myset,
+      quantity: count.max,
     });
     alert(response.messages[0]);
     if (response.success) router.push("/user/my-set");

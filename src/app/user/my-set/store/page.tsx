@@ -107,7 +107,10 @@ export default function Page() {
   };
 
   const onMinus = (drink: (typeof drinks)[number]) => {
-    if (count.now > 0) {
+    if (
+      count.now > 0 &&
+      myset.items.find((item) => item.drinkId === drink.id)
+    ) {
       if (
         myset.items.find((item) => item.drinkId === drink.id)?.bottleCount === 1
       ) {
@@ -115,7 +118,7 @@ export default function Page() {
           ...myset,
           items: myset.items.filter((item) => item.drinkId !== drink.id),
         });
-      } else if (myset.items.find((item) => item.drinkId === drink.id)) {
+      } else {
         setMySet({
           ...myset,
           items: myset.items.map((item) => {

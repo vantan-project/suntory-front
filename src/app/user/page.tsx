@@ -32,6 +32,7 @@ export default function Page() {
     topApi();
   }, []);
 
+  console.log(userPlan);
   return (
     <div className="relative pt-20">
       <Image

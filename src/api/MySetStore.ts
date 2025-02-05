@@ -9,6 +9,7 @@ export interface MySetStoreProps {
       bottleCount: number;
     }>;
   };
+  quantity: number;
 }
 
 export interface MySetStoreResponse {
@@ -18,6 +19,7 @@ export interface MySetStoreResponse {
 
 export async function MySetStore({
   mySet,
+  quantity,
 }: MySetStoreProps): Promise<MySetStoreResponse> {
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/my-sets`;
   const authToken = Cookies.get("authToken");
@@ -27,6 +29,7 @@ export async function MySetStore({
       apiUrl,
       {
         mySet: mySet,
+        quantity: quantity,
       },
       {
         headers: {

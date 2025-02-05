@@ -43,7 +43,7 @@ export default function Admin() {
             categoryId: categoryId,
           },
         })
-      ).drinks
+      ).drinks,
     );
   };
 
@@ -93,7 +93,7 @@ export default function Admin() {
               <h3 className="text-subtitle block bg-accentLightColor px-8 py-4">
                 {
                   masterCategories.find(
-                    (category) => category.id === categoryId
+                    (category) => category.id === categoryId,
                   )?.name
                 }
               </h3>

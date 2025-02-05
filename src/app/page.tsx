@@ -1,9 +1,10 @@
-import Link from "next/link";
+"use client";
 
-export default function Home() {
-  return (
-    <div>
-      <Link href="/login">Login</Link>
-    </div>
-  );
+import { useRouter } from "next/navigation";
+import { useEffect } from "react"
+
+export default function Page() {
+  const router = useRouter();
+  useEffect(() => router.push("/index.html"), []);
+  return <div />
 }

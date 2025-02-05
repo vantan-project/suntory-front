@@ -4,11 +4,12 @@ import { MasterCategory, MasterCategoryResponse } from "@/api/MasterCategory";
 import Title from "@/components/title";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 export default function DrinkStorePage() {
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [imageData, setImageData] = useState<File | null>(null);
@@ -56,6 +57,7 @@ export default function DrinkStorePage() {
 
     if (response.success) {
       alert("商品が正常に登録されました");
+      router.push("/admin/drink");
     } else {
       alert(response.messages[0]);
     }

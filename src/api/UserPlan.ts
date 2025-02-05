@@ -4,8 +4,9 @@ import Cookies from "js-cookie";
 export interface UserPlanResponse {
   success: boolean;
   plan: {
+    customerId: string;
     quantity: number;
-    price: number;
+    amount: number;
   } | null;
 }
 

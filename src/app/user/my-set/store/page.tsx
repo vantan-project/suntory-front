@@ -23,6 +23,7 @@ export default function Page() {
     MasterCategoryResponse["categories"]
   >([]);
   const [drinks, setDrinks] = useState<DrinkSelectResponse["drinks"]>([]);
+  const [allDrinks, setAllDrinks] = useState<DrinkSelectResponse["drinks"]>([]);
   const [myset, setMySet] = useState<MySetStoreProps["mySet"]>({
     name: "",
     items: [],
@@ -50,6 +51,19 @@ export default function Page() {
   useEffect(() => {
     indexApi();
   }, [search]);
+
+  const allDrinksApi = async () => {
+    const response = await DrinkSelect({
+      search: {
+        name: "",
+        categoryId: null,
+      },
+    });
+    setAllDrinks(response.drinks);
+  };
+  useEffect(() => {
+    allDrinksApi();
+  }, []);
 
   useEffect(() => {
     const userPlanApi = async () => {
@@ -121,6 +135,7 @@ export default function Page() {
   const storeApi = async () => {
     const response = await MySetStore({
       mySet: myset,
+      quantity: count.max,
     });
     alert(response.messages[0]);
     if (response.success) router.push("/user/my-set");
@@ -256,7 +271,7 @@ export default function Page() {
               setIsOpenModal(true);
             }}
           >
-            追加
+            確認
           </button>
         </div>
       </div>
@@ -266,7 +281,7 @@ export default function Page() {
         <MySetStoreModal
           myset={myset}
           setMySet={setMySet}
-          drinks={drinks}
+          drinks={allDrinks}
           onClose={() => setIsOpenModal(false)}
           onClick={() => storeApi()}
         />

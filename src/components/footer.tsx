@@ -26,7 +26,7 @@ export default function Footer() {
             ].map((item) => (
               <li key={item.href} className="flex-1 relative">
                 {pathname === item.href && (
-                  <div className="absolute top-[-18px] left-1/2 transform -translate-x-1/2 w-2/3 mx-auto rounded-t-[2px] rounded-b-[4px] h-1 bg-accentBaseColor"></div>
+                  <div className="absolute top-[-12px] left-1/2 transform -translate-x-1/2 w-2/3 mx-auto rounded-t-[2px] rounded-b-[4px] h-1 bg-accentBaseColor"></div>
                 )}
 
                 <Link

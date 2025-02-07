@@ -216,7 +216,7 @@ img {
     height: 300px;
     width: max-content;
 
-    animation: scroll 20s infinite linear 0.5s both;
+    animation: scroll 10s infinite linear 0.5s both;
 }
 
 .slider .img-box {
